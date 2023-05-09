@@ -18,7 +18,8 @@ class BaseModel:
     # Public instance attributes initilization
     def __init__(self):
         ''' initialization of the calss attr '''
-        # set the id with uuid 
+
+        # set the id with uuid
         self.id = str(uuid.uuid4())
         # set created_at and updated_at with datetime
         self.created_at = datetime.datetime.now()
