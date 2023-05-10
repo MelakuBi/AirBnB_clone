@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Discription of the project
 * * * * * * * * * * * * * * 
 learning objective of this project is to be able to explain 
@@ -29,3 +30,6 @@ to start it by typing the command:
 python3.11
 python -c command [arg] ...
 - - - - - - - - - - - - - - - 
+=======
+**AirBnB clone project**
+>>>>>>> d41942ef3ffdf778f2d5c207e9f9850ad1e6de7c
