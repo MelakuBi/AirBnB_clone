@@ -1,4 +1,5 @@
 # AirBnB clone project
+> A simple copy of the [`AirBnB website`](https://www.airbnb.com/).
 ---
 ## Discription of the project
 - learning objective of this project is to be able to explain
