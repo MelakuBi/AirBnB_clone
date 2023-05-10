@@ -16,14 +16,13 @@
 - - - 
 
 ## Disctiption of Command interpreter
-* * * * * * * * * * * * * * * * * *
 A command interpreter allows the user to interact with aprogram
 using commands in the form of text lines
 command interpreter serve many purpose and are more powerfull and useful 
 than graphical user interface
  - - - - - - - - - - - - - - - - - 
 ### How to start it
-* * * * * * * * 
+ 
 the python interpreter is usually installed as /usr/local/bin/python3.11 on those
 machines where it is available; putting /usr/local/bin in Linux systems
 to start it by typing the command:   
