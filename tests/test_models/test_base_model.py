@@ -6,6 +6,7 @@ import unittest
 from models.base_model import BaseModel
 from datetime import datetime
 
+
 class TestBaseModel(unittest.TestCase):
     '''
     Test class for base_model
@@ -66,7 +67,7 @@ class TestBaseModel(unittest.TestCase):
 
         self.assertEqual(my_model.__class__.__name__, my_dict["__class__"])
         self.assertEqual(my_model.id, my_dict["id"])
-        
+
         iso_created = my_model.created_at.isoformat()
         self.assertEqual(iso_created, my_dict["created_at"])
 
