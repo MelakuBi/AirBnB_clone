@@ -40,13 +40,13 @@ class Filestorage:
         If the file doesn’t exist, no exception should be raised)'''
         try:
             with open(self.__file_path, 'r') as jfile:
-                pfile = json.load(jfile)
-        except Exception:
+                pfile= json.load(jfile)
+        except FileNotFoundError:
             return
-        objects = eval(pfile)
-        for key, val in objects.items():
+        objects = eval(str(pfile))
+        for key, value in objects.items():
             objects[key] = eval(key.split('.')[0] + '(**value)')
-            self.__objects = objects
+        self.__objects = objects
 
         def delete(self, obj):
             try:
