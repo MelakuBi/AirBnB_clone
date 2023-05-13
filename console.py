@@ -1,4 +1,4 @@
-#!/usr/bin/ python3
+#!/usr/bin/python3
 '''
 Console entry point of the command interpreter
 '''
@@ -11,13 +11,13 @@ class HBNBCommand(cmd.Cmd):
     '''
 
     # set the promot
-    prompt = '(hbnb)'
+    prompt = " (hbnb) "
 
-    def _quit(self, arg):
+    def do_quit(self, arg):
         ''' exit the program '''
         return True
 
-    def _EOF(self, arg):
+    def do_EOF(self, arg):
         ''' exit the program '''
         print()
         return True
