@@ -24,16 +24,16 @@ class BaseModel:
                 if key != "__class__":
                     setattr(self, key, value)
                 if key == 'created_at':
-                    value = datetime.striptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    value = dt.datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                 if key == 'updated_at':
-                    value = datetime.striptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    value = dt.datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                 if 'id' not in kwargs.keys():
                     self.id = str(uuid.uuid4())
-                if 'created_at' not in kwargs.key():
+                if 'created_at' not in kwargs.keys():
                     self.created_at = dt.datetime.now()
-                if 'updated_at' not in kwargs.key():
+                if 'updated_at' not in kwargs.keys():
                     self.updated_at = self.created_at
-            setattr(self, key, value)
+            # setattr(self, key, value)
         else:
             self.id = str(uuid.uuid4())
             # set created_at and updated_at with datetime
