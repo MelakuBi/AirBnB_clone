@@ -18,7 +18,7 @@ class BaseModel:
 
     # Public instance attributes initilization
     def __init__(self, *args, **kwargs):
-        #class instantination
+        # class instantination
         if kwargs:
             for key, value in kwargs.items():
                 if key != "__class__":
@@ -34,11 +34,11 @@ class BaseModel:
                 if 'updated_at' not in kwargs.key():
                     self.updated_at = self.created_at
             setattr(self, key, value)
-        else:      
-        self.id = str(uuid.uuid4())
-        # set created_at and updated_at with datetime
-        self.created_at = dt.datetime.now()
-        self.updated_at = self.created_at
+        else:
+            self.id = str(uuid.uuid4())
+            # set created_at and updated_at with datetime
+            self.created_at = dt.datetime.now()
+            self.updated_at = self.created_at
 
     # __str__ method
     def __str__(self):
