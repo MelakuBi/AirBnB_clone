@@ -22,6 +22,11 @@ class TestBaseModel(unittest.TestCase):
         _model = BaseModel()
         self.assertEqual(str, type(_model.id))
 
+        # check if the ids created is unique
+        id1 = BaseModel()
+        id2 = BaseModel()
+        self.assertNotEqual(id1.id, id2.id)
+
         # check the typt of datetime
         self.assertEqual(datetime, type(_model.created_at))
         self.assertEqual(datetime, type(_model.updated_at))
