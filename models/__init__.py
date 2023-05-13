@@ -1,5 +1,5 @@
-#!/us/bin/python3
+#!/usr/bin/python3
 ''' __init_ dundu0r for models module'''
-# from engine.file_storage import Filestorage
-# storage = Filestorage()
+from models.engine.file_storage import Filestorage
+storage = Filestorage()
 # storage.reload()
