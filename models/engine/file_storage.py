@@ -31,8 +31,8 @@ class Filestorage:
         converted = {}
         for key, value in self.__objects.items():
             converted[key] = value.to_dict()
-            with open(self.__file_path, 'w') as jfile:
-                jfile = json.dumps(converted)
+        with open(self.__file_path, 'w') as jfile:
+            jfile = json.dump(converted, jfile)
 
     def reload(self):
         ''' deserializes the JSON file to __objects
