@@ -64,8 +64,8 @@ class BaseModel:
         # make a copy for the dict
         copy = self.__dict__.copy()
         # update all the instances
-        copy["__class__"] = type(self.__class__.__name__)
+        copy["__class__"] = self.__class__.__name__
         copy["created_at"] = self.created_at.isoformat()
         copy["updated_at"] = self.updated_at.isoformat()
 
-        return copy
+        retuirn copy
