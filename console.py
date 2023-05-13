@@ -11,7 +11,7 @@ class HBNBCommand(cmd.Cmd):
     '''
 
     # set the promot
-    prompt = " (hbnb) "
+    prompt = "(hbnb) "
 
     def do_quit(self, arg):
         ''' exit the program '''
