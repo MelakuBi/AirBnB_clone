@@ -3,6 +3,7 @@
 Test cases for base_model.py using unittest
 '''
 import unittest
+from models.base_model import BaseModel
 
 
 class TestBaseModel(unittest.TestCase):
@@ -16,4 +17,9 @@ class TestBaseModel(unittest.TestCase):
         '''
         # check if the id is string
         _model = BaseModel()
-        self.assertIsInstance(_model.id, str)
+        self.assertEqual(type(_model.id), str)
+
+
+
+if __name__ == '__main__':
+    unittest.main()
