@@ -2,7 +2,11 @@
 '''
 Console entry point of the command interpreter
 '''
+from models.base_model import BaseModel
 import cmd
+import json
+import shlex
+from datetime import datetime
 
 
 class HBNBCommand(cmd.Cmd):
@@ -21,6 +25,9 @@ class HBNBCommand(cmd.Cmd):
         ''' exit the program '''
         print()
         return True
+
+    def emptyline(self):
+        pass
 
 
 if __name__ == '__main__':
