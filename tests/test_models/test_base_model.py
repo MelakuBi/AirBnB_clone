@@ -14,6 +14,9 @@ class TestBaseModel(unittest.TestCase):
     def setUp(self):
         self._model = BaseModel()
 
+    def tset_isinstances(self):
+        self.assertIsInstance(BaseModel, type(BaseModel()))
+
     def test_init(self):
         '''
         function to test the __init__ function in base_model
