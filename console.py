@@ -47,7 +47,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         # check the name of the class and the id presence
-        
+
     # quit function to exit the program
     def do_quit(self, arg):
         ''' exit the program '''
