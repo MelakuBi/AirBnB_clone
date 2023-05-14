@@ -2,9 +2,9 @@
 '''
 A class BaseModel
 '''
-import sys
-sys.path.append("..")
-from models import storage
+# import sys
+# sys.path.append("..")
+import models
 import uuid
 import datetime as dt
 
@@ -44,7 +44,7 @@ class BaseModel:
             # set created_at and updated_at with datetime
             self.created_at = dt.datetime.now()
             self.updated_at = self.created_at
-            storage.new(self)
+            models.storage.new(self)
 
     # __str__ method
     def __str__(self):
@@ -61,7 +61,7 @@ class BaseModel:
         updated_at with the current datetime
         '''
         self.updated_at = dt.datetime.now()
-        storage.save()
+        models.storage.save()
 
     # dict method
     def to_dict(self):

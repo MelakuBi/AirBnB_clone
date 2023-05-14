@@ -3,6 +3,8 @@
 with attributes and methods '''
 import json
 import os.path
+from models.base_model import BaseModel
+# from models.user import User
 # from models.state import State
 # from models.city import City
 # from models.place import Place
@@ -38,17 +40,16 @@ class Filestorage:
         If the file doesn’t exist, no exception should be raised)'''
         try:
             with open(self.__file_path, 'r') as jfile:
-                pfile= json.loads(jfile.read())
-                for value in pfile.values():
-                    cls = value["__class__"]
-                    self.new(eval(cls)(**value))
+                pfile= json.load(jfile)
+            for key, value in pfile.items():
+                self.__objects[key] = eval(v["__class__"])(**value)
 
         except Exception:
             pass
 
-        # objects = eval(pfile)
+        # objects = json.loads(pfile)
         # for key, value in objects.items():
-            # objects[key] = eval(key.split('.')[0] + '(**value)')
+          #  objects[key] = eval(key.split('.')[0] + '(**value)')
         # self.__objects = objects
 
         def delete(self, obj):
