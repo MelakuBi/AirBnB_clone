@@ -26,17 +26,10 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key != "__class__":
                     setattr(self, key, value)
-                if key == 'created_at':
+                if key == 'created_at' or key == "updated_at":
                     value = dt.datetime.strptime(value, fdate)
-                if key == 'updated_at':
-                    value = dt.datetime.strptime(value, fdate)
+                    setattr(self, key, value)
 
-                if 'id' not in kwargs.keys():
-                    self.id = str(uuid.uuid4())
-                if 'created_at' not in kwargs.keys():
-                    self.created_at = dt.datetime.now()
-                if 'updated_at' not in kwargs.keys():
-                    self.updated_at = self.created_at
             # models.storage.new(self)
             # setattr(self, key, value)
         else:

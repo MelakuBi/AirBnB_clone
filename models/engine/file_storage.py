@@ -39,15 +39,18 @@ class Filestorage:
         (only if the JSON file (__file_path) exists ; otherwise, do nothing.
         If the file doesn’t exist, no exception should be raised)'''
         try:
-            with open(self.__file_path, 'r') as jfile:
+            with open(Filestorage.__file_path, 'r') as jfile:
                 pfile= json.load(jfile)
-            for key, value in pfile.items():
-                self.__objects[key] = eval(v["__class__"])(**value)
+                for key, value in pfile.items():
+                    _name, _id = key.split(".")
+                    objectss = eval(_name)(**value)
+                    Filestorage.__objects[key] = objectss
+                    
 
-        except Exception:
+        except IOError:
             pass
 
-        # objects = json.loads(pfile)
+        # objects = json.loads(json.dumps(pfile))
         # for key, value in objects.items():
           #  objects[key] = eval(key.split('.')[0] + '(**value)')
         # self.__objects = objects
