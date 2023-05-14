@@ -30,3 +30,16 @@ to start it by typing the command:
 `python3.11`   
 `python -c command [arg] ...`   
 `- - - - - - - - - - - - - - - ` 
+### usage
+
+$ ./console.py
+(hbnb) help
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+
+(hbnb) 
+(hbnb) 
+(hbnb) quit
+$

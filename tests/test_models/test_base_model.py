@@ -2,8 +2,10 @@
 '''
 Test cases for base_model.py using unittest
 '''
-import unittest
+import sys
+sys.path.append("....")
 from models.base_model import BaseModel
+import unittest
 from datetime import datetime
 
 
@@ -13,8 +15,8 @@ class TestBaseModel(unittest.TestCase):
     '''
 
     def setUp(self):
-        self._model = BaseModel()
-
+     #   self._model = BaseModel()
+        pass
     def tset_isinstances(self):
         self.assertIsInstance(BaseModel, type(BaseModel()))
 
@@ -55,8 +57,8 @@ class TestBaseModel(unittest.TestCase):
         Function to test the to_dict function inside BaseModel
         '''
 
-        my_model = self._model
-        my_dict = self._model.to_dict()
+        my_model = BaseModel()
+        my_dict = my_model.to_dict()
         self.assertIsInstance(my_dict, dict)
         self.assertIn("__class__", my_dict)
         self.assertIn("id", my_dict)
