@@ -35,6 +35,25 @@ class HBNBCommand(cmd.Cmd):
         instance.save()
         print(instance.id)
 
+    # show function to Prints the string representation of an instance
+    def do_show(self, arg):
+        '''
+        Prints the string representation of an instance
+        based on the class name and id
+        '''
+        if not arg:
+            print("** class name missing **")
+            return
+        # find the number of arguments inserted
+        arg = arg.split()
+
+        # check the length of the arguments
+        if len(arg) < 2:
+            print("** instance id missing **")
+            return
+
+        # check the name of the class and the id presence
+
     # quit function to exit the program
     def do_quit(self, arg):
         ''' exit the program '''
