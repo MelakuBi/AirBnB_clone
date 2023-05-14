@@ -26,14 +26,14 @@ class HBNBCommand(cmd.Cmd):
 
         # check if there is class name or not
         try:
-            cls_name = models.class_for_name(arg)
+            # cls_name = models.class_for_name(arg)
         except NameError:
             print("** class doesn't exist **")
             return
 
-        instance = cls()
-        instance.save()
-        print(instance.id)
+        # instance = cls()
+        # instance.save()
+        # print(instance.id)
 
     # show function to Prints the string representation of an instance
     def do_show(self, arg):
