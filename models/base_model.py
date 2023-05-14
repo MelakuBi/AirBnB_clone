@@ -2,7 +2,9 @@
 '''
 A class BaseModel
 '''
-import models
+import sys
+sys.path.append("..")
+from models import storage
 import uuid
 import datetime as dt
 
