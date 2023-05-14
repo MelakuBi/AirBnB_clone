@@ -7,6 +7,7 @@ import cmd
 import json
 import shlex
 from datetime import datetime
+import models
 
 
 class HBNBCommand(cmd.Cmd):
@@ -24,16 +25,9 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             print("** class name missing **")
 
-        # check if there is class name or not
-        try:
-            # cls_name = models.class_for_name(arg)
-        except NameError:
+        # check if there is class name or iD
+        elif arg not in self.classes:
             print("** class doesn't exist **")
-            return
-
-        # instance = cls()
-        # instance.save()
-        # print(instance.id)
 
     # show function to Prints the string representation of an instance
     def do_show(self, arg):
@@ -53,7 +47,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         # check the name of the class and the id presence
-
+        
     # quit function to exit the program
     def do_quit(self, arg):
         ''' exit the program '''
