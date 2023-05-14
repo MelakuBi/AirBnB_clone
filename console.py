@@ -14,9 +14,23 @@ class HBNBCommand(cmd.Cmd):
     Command interpreter command
     '''
 
-    # set the promot
+    # set the promot and classes
     prompt = "(hbnb) "
+    classes = {"BaseModel"}
 
+    # Create function to create a new instaces if not found
+    def do_create(self, arg):
+        ''' Creates a new instance of BaseModel'''
+        if not arg:
+            print("** class name missing **")
+
+        # check if there is class name or not
+        try:
+            cls_name = models.class_for_name(arg)
+        except NameError:
+            print("** class doesn't exist **")
+
+    # quit function to exit the program
     def do_quit(self, arg):
         ''' exit the program '''
         return True
