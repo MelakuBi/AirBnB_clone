@@ -29,6 +29,11 @@ class HBNBCommand(cmd.Cmd):
             cls_name = models.class_for_name(arg)
         except NameError:
             print("** class doesn't exist **")
+            return
+
+        instance = cls()
+        instance.save()
+        print(instance.id)
 
     # quit function to exit the program
     def do_quit(self, arg):
