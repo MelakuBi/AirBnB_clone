@@ -17,7 +17,9 @@ class HBNBCommand(cmd.Cmd):
 
     # set the promot and classes
     prompt = "(hbnb) "
-    classes = ["BaseModel"]
+    classes = [
+            "BaseModel", "User", "State", "City", "Amenity", "Place", "Review"
+            ]
 
     # Create function to create a new instaces if not found
     def do_create(self, arg):
@@ -32,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
 
         try:
             cls = globals()[arg]
-        except:
+        except Exception:
             return
         instance = cls()
         print(instance.id)
@@ -45,16 +47,19 @@ class HBNBCommand(cmd.Cmd):
         '''
         if not arg:
             print("** class name missing **")
-            return
-        # find the number of arguments inserted
-        arg = arg.split()
-
-        # check the length of the arguments
-        if len(arg) < 2:
-            print("** instance id missing **")
-            return
-
-        # check the name of the class and the id presence
+        else:
+            objects = models.storage.all()
+            try:
+                _name, _id = arg.split()
+                key = _name + "." + _id
+                print(objects[key])
+            except ValueError:
+                if arg in self.classes:
+                    print("** instance id missing **")
+                else:
+                    print("** class doesn't exist **")
+            except KeyError:
+                print("** no instance found **")
 
     # quit function to exit the program
     def do_quit(self, arg):
