@@ -21,6 +21,20 @@ class HBNBCommand(cmd.Cmd):
             "BaseModel", "User", "State", "City", "Amenity", "Place", "Review"
             ]
 
+    # All functon to print string representation of all instances
+    def do_all(self, arg):
+        '''
+        Prints all string representation of all
+        instances based or not on the class name
+        '''
+        if not arg:
+            print("** class name missing **")
+        elif arg not in self.classes:
+            print("** class doesn't exist **")
+        else:
+            objects = models.storage.all()
+            print(objects)
+
     # Create function to create a new instaces if not found
     def do_create(self, arg):
         ''' Creates a new instance of BaseModel'''
