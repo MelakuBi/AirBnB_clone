@@ -17,17 +17,25 @@ class HBNBCommand(cmd.Cmd):
 
     # set the promot and classes
     prompt = "(hbnb) "
-    classes = {"BaseModel"}
+    classes = ["BaseModel"]
 
     # Create function to create a new instaces if not found
     def do_create(self, arg):
         ''' Creates a new instance of BaseModel'''
+        _name = arg
         if not arg:
             print("** class name missing **")
 
         # check if there is class name or iD
-        elif arg not in self.classes:
+        elif _name not in self.classes:
             print("** class doesn't exist **")
+
+        try:
+            cls = globals()[arg]
+        except:
+            return
+        instance = cls()
+        print(instance.id)
 
     # show function to Prints the string representation of an instance
     def do_show(self, arg):
