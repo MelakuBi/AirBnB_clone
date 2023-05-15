@@ -12,7 +12,7 @@ from models.amenity import Amenity
 from models.review import Review
 
 
-class Filestorage:
+class FileStorage:
     ''' define class attribute and method
     for storage objects'''
 
@@ -24,15 +24,14 @@ class Filestorage:
         return self.__objects
 
     def new(self, obj):
-        key = obj.__class__.__name__ + '.' + obj.id
+        key = obj.__class__.__name__ + '.' + str(obj.id)
         self.__objects[key] = obj
 
     def save(self):
-        converted = {}
-        for key, value in self.__objects.items():
-            converted[key] = value.to_dict()
-        with open(self.__file_path, 'w') as jfile:
-            jfile = json.dump(converted, jfile)
+        ob = FileStorage.__objects
+        obd = {obj: ob[obj].to_dict() for obj in ob.keys()}
+        with open(FileStorage.__file__path, 'w') as f:
+            json.dump(obd, f)
 
     def reload(self):
         ''' deserializes the JSON file to __objects
