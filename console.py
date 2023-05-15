@@ -74,6 +74,49 @@ class HBNBCommand(cmd.Cmd):
                     print("** class doesn't exist **")
             except KeyError:
                 print("** no instance found **")
+    
+    # Update function to update instance based on
+    # the class name and id by adding or updating attribute
+    def do_update(self, arg):
+        '''
+        Updates an instance based on
+        the class name and id by adding or updating attribute
+        '''
+        arg_parts = arg.split()
+        if not arg or arg_parts == 0:
+            print("** class name missing **")
+            return
+        
+        if len(arg_parts) < 2:
+            print("** instance id missing **")
+            return
+        
+        _name, _id = arg_parts[0], arg_parts[1]
+        if _name not in self.classes:
+            print("** class doesn't exist **")
+            return
+        if len(arg_parts) < 3:
+            print("** attribute name missing **")
+            return
+        if len(arg_parts) < 4:
+            print("** value missing **")
+            return
+
+        attr_name, attr_value = args[2], args[3]
+        objects = models.storage.all()
+        key = class_name + "." + obj_id
+        obj = objects.get(key)
+
+        if obj is None:
+            print("** no instance found **")
+            return
+
+        try:
+            setattr(obj, attr_name, eval(attr_value))
+        except AttributeError:
+            print("** no instance found **")
+            return
+        models.storage.save()
 
     # Destroy function to deletes an instance
     def do_destroy(self, arg):
