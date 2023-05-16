@@ -2,9 +2,9 @@
 """
 module for serializing and deserializing object to file storage
 """
-#import sys
+import sys
 #sys.path.append('..')
-#import os
+import os
 from models.amenity import Amenity
 from models.base_model import BaseModel
 from models.city import City
