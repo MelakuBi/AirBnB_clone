@@ -2,4 +2,10 @@ header {
         color:#FF0000;
         height:70px;
         width:100%;
+	border-bottom:1px solid #CCCCCC;
+}
+.logo {
+	display:flex;
+	padding-left: 20px;
+	align-vertical: bottom;
 }
