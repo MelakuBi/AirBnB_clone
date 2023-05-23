@@ -1,85 +1,48 @@
 #!/usr/bin/python3
-"""
-module for serializing and deserializing object to file storage
-"""
-import sys
-#sys.path.append('..')
-import os
-from models.amenity import Amenity
-from models.base_model import BaseModel
-from models.city import City
-from models.place import Place
-from models.review import Review
-from models.state import State
-from models.user import User
+import uuid
+from datetime import datetime
+import models
+
+""" baseModel """
 
 
-class FileStorage():
-    """
-    FileStorage class for serializing and deserializing objects
-    into and from files respectively
-    """
-    engine_directory = os.path.dirname(os.path.abspath(__file__))
-    parent_directory = os.getcwd()
-    __file_path = parent_directory + '/file.json'
-    __objects = dict()
+class BaseModel:
+    """ defines common attributes and methods for inheriting classes """
 
-    def __init__(self):
-        """instantiation method for class
-        """
-        pass
+    def __init__(self, *args, **kwargs):
+        """ initialize an instance potentially with a dictionary argument"""
+        if kwargs and len(kwargs) > 0:
+            for k, v in kwargs.items():
+                if k == "created_at" or k == "updated_at":
+                    setattr(self, k, datetime.strptime
+                            (v, "%Y-%m-%dT%H:%M:%S.%f"))
+                elif k == "__class__":
+                    pass
+                else:
+                    setattr(self, k, v)
+        if "id" not in kwargs:
+            self.id = str(uuid.uuid4())
+        if "created_at" not in kwargs:
+            self.created_at = datetime.now()
+        if "updated_at" not in kwargs:
+            self.updated_at = datetime.now()
+        if not kwargs or len(kwargs) == 0:
+            models.storage.new(self)
 
-    def all(self):
-        """returns the dictionary __objects
-        """
-        return self.__objects
-
-    def new(self, obj):
-        """sets in __objects the obj with key <obj class name>.id
-        """
-        # TODO not sure if this check is needed for holberton checker
-        try:
-            obj_d = obj.to_dict()
-        except:
-            raise TypeError('object passed to filestorage has no to_dict()')
-        key = obj_d['__class__'] + '.' + str(obj_d['id'])
-        self.__objects[key] = obj
-
-    def delete(self, obj):
-        """deletes obj from __objects
-        """
-        try:
-            key = obj.__class__.__name__ + '.' + str(obj.id)
-            del self.__objects[key]
-            return True
-        except:
-            return False
+    def __str__(self):
+        """ overwrite string special method """
+        r = "[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__)
+        return r
 
     def save(self):
-        """serializes the __objects to the JSON file
-            -> path (__file_path)
-        """
-        json_dump = str({k: v.to_dict() for (k, v) in self.__objects.items()})
-        json_dump = json_dump.replace('\'', '"')
-        with open(self.__file_path, 'w', encoding='utf-8') as myFile:
-            myFile.write(json_dump)
+        """ update updated_at with current time """
+        self.updated_at = datetime.now()
+        models.storage.save()
 
-    def reload(self):
-        """deserializes the JSON file to __objects
-            -> path (__file_path)
-           ONLY if it exists, no exceptions are raised
-        """
-        try:
-            with open(self.__file_path, 'r', encoding='utf-8') as myFile:
-                my_obj_dump = myFile.read()
-        except:
-            return
-        objects = eval(my_obj_dump)
-        for (k, v) in objects.items():
-            objects[k] = eval(k.split('.')[0] + '(**v)')
-        self.__objects = objects
-
-    def get_filepath(self):
-        """get filepath for JSON file
-        """
-        return self.__file_path
+    def to_dict(self):
+        """ return a dict with a key/values of __dict__ of the instance """
+        new_dict = self.__dict__.copy()
+        new_dict['__class__'] = type(self).__name__
+        new_dict['updated_at'] = self.updated_at.isoformat()
+        new_dict['created_at'] = self.created_at.isoformat()
+return new_dict
